@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Navbar, Form, FormControl, Button } from "react-bootstrap";
 
 interface State {
-  artist: any;
+  artist: string;
   data: any;
-  e: any;
 }
 
 /* add data:{
@@ -13,9 +12,14 @@ interface State {
 // onClick = {()=> this.state.artist}?
 
 class SearchBar extends Component<State> {
-  fetch = async (artist) => {
+  state = {
+    artist: "",
+    data: [],
+  };
+
+  fetch = async () => {
     let response = await fetch(
-      `https://deezerdevs-deezer.p.rapidapi.com/search?q=${this.props.artist}`,
+      `https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist}`,
       {
         method: "GET",
         headers: {
@@ -42,12 +46,12 @@ class SearchBar extends Component<State> {
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-          <Form inline onSubmit={() => this.fetch(artist)}>
+          <Form inline onSubmit={() => this.fetch()}>
             <FormControl
               type="text"
               placeholder="Search"
               className="mr-sm-2"
-              value={this.props.artist}
+              value={this.state.artist}
               onChange={(e) => this.setState({ artist: e.currentTarget.value })}
             />
             <Button variant="outline-success" type="Submit">
