@@ -19,7 +19,7 @@ class SearchBar extends Component<State> {
 
   fetch = async () => {
     let response = await fetch(
-      `https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist}`,
+      `https://deezerdevs-deezer.p.rapidapi.com/search?q=${this.state.artist}`,
       {
         method: "GET",
         headers: {
